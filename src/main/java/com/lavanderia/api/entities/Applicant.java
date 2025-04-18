@@ -1,6 +1,7 @@
 package com.lavanderia.api.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,6 +11,9 @@ public class Applicant extends People{
 
     private String cpf;
     private String responsible;
+
+    @OneToOne
+    private Provider provider;
 
     public Applicant(){}
 
@@ -33,5 +37,13 @@ public class Applicant extends People{
 
     public void setResponsible(String responsible) {
         this.responsible = responsible;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 }

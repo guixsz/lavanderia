@@ -1,6 +1,6 @@
 package com.lavanderia.api.controllers;
 
-import com.lavanderia.api.dto.ApplicantRecord;
+import com.lavanderia.api.dto.CreateRecord;
 import com.lavanderia.api.entities.Applicant;
 import com.lavanderia.api.services.ApplicantService;
 import jakarta.validation.Valid;
@@ -21,7 +21,7 @@ public class ApplicantController {
     }
 
     @PostMapping
-    public ResponseEntity<Applicant> createApplicant(@Valid @RequestBody ApplicantRecord applicantRecord) {
+    public ResponseEntity<Applicant> createApplicant(@Valid @RequestBody CreateRecord applicantRecord) {
         Applicant applicant = applicantService.createApplicant(applicantRecord);
         return  ResponseEntity.created(URI.create("/applicants/" + applicant.getId().toString())).build();
     }
