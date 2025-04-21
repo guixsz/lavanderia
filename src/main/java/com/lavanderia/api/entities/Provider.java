@@ -1,8 +1,11 @@
 package com.lavanderia.api.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
+import java.util.List;
 
 @Entity
 @Table(name = "providers")
@@ -12,6 +15,9 @@ public class Provider extends People{
 
     @OneToOne
     private Applicant applicant;
+
+    @OneToMany(mappedBy = "provider")
+    private List<Product> product;
 
     public Provider() {
     }

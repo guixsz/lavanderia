@@ -1,19 +1,21 @@
 package com.lavanderia.api.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "applicant")
 public class Applicant extends People{
-
 
     private String cpf;
     private String responsible;
 
     @OneToOne
     private Provider provider;
+
+    @OneToMany(mappedBy = "applicants")
+    private List<Product> products;
 
     public Applicant(){}
 

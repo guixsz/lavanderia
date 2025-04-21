@@ -1,7 +1,6 @@
 package com.lavanderia.api.services;
 
 import com.lavanderia.api.dto.CreateRecord;
-import com.lavanderia.api.dto.ProviderRecord;
 import com.lavanderia.api.entities.Applicant;
 import com.lavanderia.api.entities.Provider;
 import com.lavanderia.api.repositories.ProviderRepository;
