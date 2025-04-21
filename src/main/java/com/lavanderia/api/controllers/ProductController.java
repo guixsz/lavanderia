@@ -5,6 +5,7 @@ import com.lavanderia.api.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DetailsRequest>> findDetailsProduct() {
-        List<DetailsRequest> details = this.productService.findDetailsProduct();
+    public ResponseEntity<List<DetailsRequest>> findDetailsProduct(@RequestParam(defaultValue = "0") int page,
+                                                                   @RequestParam(defaultValue = "3") int items) {
+        List<DetailsRequest> details = this.productService.findDetailsProduct(page, items);
         return ResponseEntity.ok(details);
     }
 
