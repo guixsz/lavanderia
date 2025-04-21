@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -13,8 +15,8 @@ public class Product {
     private Long id;
     private String type;
     private Integer quantity;
-    private Double value;
-    private Double subTotal;
+    private BigDecimal value;
+    private BigDecimal subTotal;
 
     @ManyToOne
     private Applicant applicants;
@@ -25,7 +27,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String type, Integer quantity, Double value, Double subTotal) {
+    public Product(String type, Integer quantity, BigDecimal value, BigDecimal subTotal) {
         this.type = type;
         this.quantity = quantity;
         this.value = value;
@@ -56,19 +58,19 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Double getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 
-    public Double getSubTotal() {
+    public BigDecimal getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(Double subTotal) {
+    public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
 

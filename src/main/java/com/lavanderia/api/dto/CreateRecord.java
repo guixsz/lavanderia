@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
+
 public record CreateRecord(@NotBlank String applicantName,
                            @NotBlank @Email String applicantEmail,
                            @NotBlank String applicantCpf,
@@ -15,6 +17,6 @@ public record CreateRecord(@NotBlank String applicantName,
                            @NotBlank String providerPhone,
                            @NotBlank String productType,
                            @NotNull  Integer productQuantity,
-                           @NotNull  Double productValue,
-                           @NotNull  Double productSubTotal) {
+                           @NotNull BigDecimal productValue
+) {
 }

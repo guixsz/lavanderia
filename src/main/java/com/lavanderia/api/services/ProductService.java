@@ -9,6 +9,7 @@ import com.lavanderia.api.repositories.ProductRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -25,13 +26,17 @@ public class ProductService {
                 createRecord.productType(),
                 createRecord.productQuantity(),
                 createRecord.productValue(),
-                createRecord.productSubTotal()
+                subTotal(createRecord.productValue(), createRecord.productQuantity())
         );
 
         product.setApplicants(applicant);
         product.setProvider(provider);
 
         return productRepository.save(product);
+    }
+
+    public BigDecimal subTotal (BigDecimal value, Integer quant) {
+        return value.multiply(BigDecimal.valueOf(quant));
     }
 
     public List<DetailsRequest> findDetailsProduct(int page,

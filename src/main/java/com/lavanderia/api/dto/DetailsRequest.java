@@ -1,5 +1,7 @@
 package com.lavanderia.api.dto;
 
+import java.math.BigDecimal;
+
 public record DetailsRequest(String applicantName,
                              Long applicantId,
                              String applicantCpf,
@@ -8,6 +10,6 @@ public record DetailsRequest(String applicantName,
                              String providerName,
                              String providerPhone,
                              String productName,
-                             Double productSubtotal
+                             BigDecimal productSubtotal
                              ) {
 }
