@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,7 +27,8 @@ public class ProductService {
                 createRecord.productType(),
                 createRecord.productQuantity(),
                 createRecord.productValue(),
-                subTotal(createRecord.productValue(), createRecord.productQuantity())
+                subTotal(createRecord.productValue(), createRecord.productQuantity()),
+                LocalDateTime.now()
         );
 
         product.setApplicants(applicant);
@@ -53,7 +55,8 @@ public class ProductService {
                         detail.getProvider().getName(),
                         detail.getProvider().getPhone(),
                         detail.getType(),
-                        detail.getSubTotal()
+                        detail.getSubTotal(),
+                        detail.getOrderData()
                 ))
                 .toList();
     }

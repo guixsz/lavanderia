@@ -1,10 +1,10 @@
 package com.lavanderia.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products")
@@ -16,7 +16,14 @@ public class Product {
     private String type;
     private Integer quantity;
     private BigDecimal value;
+
+    @Column(name = "sub_total")
     private BigDecimal subTotal;
+
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @Column(name = "order_data")
+    private LocalDateTime orderData;
+
 
     @ManyToOne
     private Applicant applicants;
@@ -27,11 +34,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String type, Integer quantity, BigDecimal value, BigDecimal subTotal) {
+    public Product(String type, Integer quantity, BigDecimal value, BigDecimal subTotal, LocalDateTime orderData) {
         this.type = type;
         this.quantity = quantity;
         this.value = value;
         this.subTotal = subTotal;
+        this.orderData = orderData;
     }
 
     public Long getId() {
@@ -72,6 +80,14 @@ public class Product {
 
     public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public LocalDateTime getOrderData() {
+        return orderData;
+    }
+
+    public void setOrderData(LocalDateTime orderData) {
+        this.orderData = orderData;
     }
 
     public Applicant getApplicants() {

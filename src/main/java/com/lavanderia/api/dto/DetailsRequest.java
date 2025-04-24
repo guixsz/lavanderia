@@ -1,6 +1,9 @@
 package com.lavanderia.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public record DetailsRequest(String applicantName,
                              Long applicantId,
@@ -10,6 +13,10 @@ public record DetailsRequest(String applicantName,
                              String providerName,
                              String providerPhone,
                              String productName,
-                             BigDecimal productSubtotal
+                             BigDecimal productSubtotal,
+
+                             @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+                             LocalDateTime orderData
+
                              ) {
 }
