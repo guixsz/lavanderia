@@ -47,7 +47,18 @@ public class ProductService {
                                                    int items) {
         List<Product> details= productRepository.findProductApplicantAndProvider(PageRequest.of(page, items));
 
-        return details.stream().map(
+        return converting(details);
+    }
+
+    public List<DetailsRequest> findDetailsProductByCpf(String cpf, int page, int items) {
+
+        List<Product> details = productRepository.findProductByCpfApplicant(cpf, PageRequest.of(page, items));
+
+        return converting(details);
+    }
+
+    public List<DetailsRequest> converting(List<Product> products) {
+        return products.stream().map(
                 detail -> new DetailsRequest(
                         detail.getApplicants().getName(),
                         detail.getApplicants().getId(),
