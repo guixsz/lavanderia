@@ -1,12 +1,13 @@
 package com.lavanderia.api.entities;
 
+import com.lavanderia.api.entities.people.People;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "applicant")
-public class Applicant extends People{
+public class Applicant extends People {
 
     private String cpf;
     private String responsible;

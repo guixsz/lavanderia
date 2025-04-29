@@ -1,6 +1,7 @@
 package com.lavanderia.api.services;
 
 import com.lavanderia.api.dto.CreateRecord;
+import com.lavanderia.api.dto.ApplicantPut;
 import com.lavanderia.api.entities.Applicant;
 import com.lavanderia.api.repositories.ApplicantRepository;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,19 @@ public class ApplicantService {
         this.productService.createProduct(createRecord, applicant, provider);
 
         return applicant;
+    }
+
+    @Transactional
+    public Applicant putApplicant(ApplicantPut putData, Long id) throws Exception {
+        Applicant applicant = findApplicantById(id);
+
+        if(!putData.responsible().isEmpty()) applicant.setResponsible(putData.responsible());
+        if(!putData.phone().isEmpty()) applicant.setTelephone(putData.phone());
+        if(!putData.email().isEmpty()) applicant.setEmail(putData.email());
+        if(!putData.cpf().isEmpty()) applicant.setCpf(putData.cpf());
+        if(!putData.name().isEmpty()) applicant.setName(putData.name());
+
+        return applicantRepository.save(applicant);
     }
 
     public Applicant findApplicantById(Long id) throws Exception {

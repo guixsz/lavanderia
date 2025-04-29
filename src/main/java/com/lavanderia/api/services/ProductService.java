@@ -8,6 +8,7 @@ import com.lavanderia.api.entities.Provider;
 import com.lavanderia.api.repositories.ProductRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    @Transactional
     public Product createProduct(CreateRecord createRecord, Applicant applicant, Provider provider) {
         var product = new Product(
                 createRecord.productType(),

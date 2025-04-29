@@ -1,4 +1,4 @@
-package com.lavanderia.api.entities;
+package com.lavanderia.api.entities.people;
 
 import jakarta.persistence.*;
 

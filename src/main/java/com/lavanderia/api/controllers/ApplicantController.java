@@ -1,5 +1,6 @@
 package com.lavanderia.api.controllers;
 
+import com.lavanderia.api.dto.ApplicantPut;
 import com.lavanderia.api.dto.CreateRecord;
 import com.lavanderia.api.entities.Applicant;
 import com.lavanderia.api.services.ApplicantService;
@@ -14,7 +15,7 @@ import java.net.URI;
 @RequestMapping("/applicants")
 public class ApplicantController {
 
-    private ApplicantService applicantService;
+    private final ApplicantService applicantService;
 
     public ApplicantController(ApplicantService applicantService) {
         this.applicantService = applicantService;
@@ -24,6 +25,12 @@ public class ApplicantController {
     public ResponseEntity<Applicant> createApplicant(@Valid @RequestBody CreateRecord applicantRecord) {
         Applicant applicant = applicantService.createApplicant(applicantRecord);
         return  ResponseEntity.created(URI.create("/applicants/" + applicant.getId().toString())).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Applicant> putApplicant(@RequestBody ApplicantPut applicantPut, @PathVariable Long id) throws Exception {
+        Applicant applicant = applicantService.putApplicant(applicantPut, id);
+        return ResponseEntity.ok(applicant);
     }
 
     @GetMapping("/{id}")

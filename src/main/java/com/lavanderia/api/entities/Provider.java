@@ -1,5 +1,6 @@
 package com.lavanderia.api.entities;
 
+import com.lavanderia.api.entities.people.People;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "providers")
-public class Provider extends People{
+public class Provider extends People {
 
     private String cnpj;
 

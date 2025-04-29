@@ -5,6 +5,7 @@ import com.lavanderia.api.entities.Applicant;
 import com.lavanderia.api.entities.Provider;
 import com.lavanderia.api.repositories.ProviderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProviderService {
@@ -15,6 +16,7 @@ public class ProviderService {
         this.providerRepository = providerRepository;
     }
 
+    @Transactional
     public Provider createprovider(CreateRecord createRecord, Applicant applicant) {
         var provider = new Provider(
                 createRecord.providerName(),
