@@ -20,6 +20,9 @@ public class Provider extends People {
     @OneToMany(mappedBy = "provider")
     private List<Product> product;
 
+    @OneToOne
+    private Address address;
+
     public Provider() {
     }
 

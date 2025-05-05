@@ -2,6 +2,7 @@ package com.lavanderia.api.services;
 
 import com.lavanderia.api.dto.CreateRecord;
 import com.lavanderia.api.dto.DetailsRequest;
+import com.lavanderia.api.entities.Address;
 import com.lavanderia.api.entities.Applicant;
 import com.lavanderia.api.entities.Product;
 import com.lavanderia.api.entities.Provider;
@@ -24,19 +25,27 @@ public class ProductService {
     }
 
     @Transactional
-    public Product createProduct(CreateRecord createRecord, Applicant applicant, Provider provider) {
+    public Product createProduct(CreateRecord createRecord, Applicant applicant, Provider provider, Address address) {
+        LocalDateTime dateNow = LocalDateTime.now();
+
         var product = new Product(
                 createRecord.productType(),
                 createRecord.productQuantity(),
                 createRecord.productValue(),
                 subTotal(createRecord.productValue(), createRecord.productQuantity()),
-                LocalDateTime.now()
+                dateNow,
+                pickupDate(dateNow)
         );
 
         product.setApplicants(applicant);
         product.setProvider(provider);
+        product.setAddress(address);
 
         return productRepository.save(product);
+    }
+
+    public LocalDateTime pickupDate(LocalDateTime dateTime) {
+        return dateTime.plusDays(2);
     }
 
     public BigDecimal subTotal (BigDecimal value, Integer quant) {
@@ -69,7 +78,10 @@ public class ProductService {
                         detail.getProvider().getPhone(),
                         detail.getType(),
                         detail.getSubTotal(),
-                        detail.getOrderData()
+                        detail.getAddress().getApartmentNumber(),
+                        detail.getAddress().getFloor(),
+                        detail.getOrderData(),
+                        detail.getPickupDate()
                 ))
                 .toList();
     }

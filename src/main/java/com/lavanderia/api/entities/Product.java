@@ -24,22 +24,29 @@ public class Product {
     @Column(name = "order_data")
     private LocalDateTime orderData;
 
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @Column(name = "pickup_data")
+    private LocalDateTime pickupDate;
 
-    @ManyToOne
+    @OneToOne
     private Applicant applicants;
 
     @ManyToOne
     private Provider provider;
 
+    @ManyToOne()
+    private Address address;
+
     public Product() {
     }
 
-    public Product(String type, Integer quantity, BigDecimal value, BigDecimal subTotal, LocalDateTime orderData) {
+    public Product(String type, Integer quantity, BigDecimal value, BigDecimal subTotal, LocalDateTime orderData, LocalDateTime pickupDate) {
         this.type = type;
         this.quantity = quantity;
         this.value = value;
         this.subTotal = subTotal;
         this.orderData = orderData;
+        this.pickupDate = pickupDate;
     }
 
     public Long getId() {
@@ -90,6 +97,14 @@ public class Product {
         this.orderData = orderData;
     }
 
+    public LocalDateTime getPickupDate() {
+        return pickupDate;
+    }
+
+    public void setPickupDate(LocalDateTime pickupDate) {
+        this.pickupDate = pickupDate;
+    }
+
     public Applicant getApplicants() {
         return applicants;
     }
@@ -104,5 +119,13 @@ public class Product {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

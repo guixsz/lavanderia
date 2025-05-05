@@ -14,9 +14,12 @@ public record DetailsRequest(String applicantName,
                              String providerPhone,
                              String productName,
                              BigDecimal productSubtotal,
+                             String addressNumberApartment,
+                             String addressFloor,
 
                              @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-                             LocalDateTime orderData
-
+                             LocalDateTime orderDate,
+                             @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+                             LocalDateTime pickupDate
                              ) {
 }

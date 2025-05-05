@@ -18,6 +18,9 @@ public class Applicant extends People {
     @OneToMany(mappedBy = "applicants")
     private List<Product> products;
 
+    @OneToOne
+    private Address address;
+
     public Applicant(){}
 
     public Applicant(String name, String cpf, String email, String phone, String responsible) {
@@ -48,5 +51,21 @@ public class Applicant extends People {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

@@ -15,6 +15,8 @@ public record CreateRecord(@NotBlank String applicantName,
                            @NotBlank @Email String providerEmail,
                            @NotBlank String providerCnpj,
                            @NotBlank String providerPhone,
+                           @NotBlank String addressNumberApartment,
+                           @NotBlank String addressFloor,
                            @NotBlank String productType,
                            @NotNull  Integer productQuantity,
                            @NotNull BigDecimal productValue

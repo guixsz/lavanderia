@@ -13,11 +13,13 @@ public class ApplicantService {
     private final ApplicantRepository applicantRepository;
     private final ProviderService providerService;
     private final ProductService productService;
+    private final AddressService addressService;
 
-    public ApplicantService(ApplicantRepository applicantRepository, ProviderService providerService, ProductService productService) {
+    public ApplicantService(ApplicantRepository applicantRepository, ProviderService providerService, ProductService productService, AddressService addressService) {
         this.applicantRepository = applicantRepository;
         this.providerService = providerService;
         this.productService = productService;
+        this.addressService = addressService;
     }
 
     @Transactional
@@ -34,7 +36,8 @@ public class ApplicantService {
 
         this.applicantRepository.save(applicant);
         var provider = this.providerService.createprovider(createRecord, applicant);
-        this.productService.createProduct(createRecord, applicant, provider);
+        var address = this.addressService.createAddress(createRecord, applicant, provider);
+        var product = this.productService.createProduct(createRecord, applicant, provider, address);
 
         return applicant;
     }
